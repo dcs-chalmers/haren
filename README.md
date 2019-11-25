@@ -6,7 +6,8 @@ scheduling policies. It abstracts the state of streaming components as abritrary
 used by *user-defined scheduling functions* to define intra- and inter-thread scheduling rules. 
 
 For detailed information, please refer to the ACM DEBS'19 publication introducing the framework:
-[Haren: A Framework for Ad-Hoc Thread Scheduling Policies for Data Streaming Applications](https://dl.acm.org/citation.cfm?id=3329505).
+
+> *Dimitris Palyvos-Giannas, Vincenzo Gulisano, and Marina Papatriantafilou*. 2019. **Haren: A Framework for Ad-Hoc Thread Scheduling Policies for Data Streaming Applications**. In Proceedings of the 13th ACM International Conference on Distributed and Event-based Systems (DEBS ‘19). ACM, New York, NY, USA, 19-30. DOI: https://doi.org/10.1145/3328905.3329505
 
 
 
@@ -24,6 +25,8 @@ which controls the prioritization of tasks in each thread.
 ### Scheduling Phases
 
 The figure below shows a high-level overview of the different scheduling stages of Haren.
+
+
 <img src="resources/haren-overview.png" width="400" alt="haren overview">
 
 
