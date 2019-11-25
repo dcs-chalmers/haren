@@ -1,6 +1,6 @@
 # Haren
 
-Haren is a scheduling framework for stream processing systems. It executes streaming operators 
+Haren is a **scheduling framework for stream processing systems**. It executes streaming operators 
 using a group of Processing Threads (PTs) and allows the developer to easily implement and enforce
 scheduling policies. It abstracts the state of streaming components as abritrary *features*, that are
 used by *user-defined scheduling functions* to define intra- and inter-thread scheduling rules. 
@@ -24,8 +24,7 @@ which controls the prioritization of tasks in each thread.
 ### Scheduling Phases
 
 The figure below shows a high-level overview of the different scheduling stages of Haren.
-
-![haren overview](resources/haren-overview.png "Haren Overview")
+<img src="resources/haren-overview.png" width="400" alt="haren overview">
 
 
 
