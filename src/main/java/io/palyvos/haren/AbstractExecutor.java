@@ -99,6 +99,7 @@ public abstract class AbstractExecutor implements Runnable {
         beginRound();
       }
     }
+    LOG.debug("Executor {} finished.", index);
   }
 
   /**
@@ -110,7 +111,6 @@ public abstract class AbstractExecutor implements Runnable {
   private void beginRound() {
     calculatePriorities();
     sortTasks();
-    long otherStart = System.currentTimeMillis();
     onRoundStart();
     runLaggingTasks();
     backoff.reset();
@@ -120,7 +120,6 @@ public abstract class AbstractExecutor implements Runnable {
   }
 
   private void calculatePriorities() {
-    long start = System.currentTimeMillis();
     for (Task task : executorTasks) {
       state
           .intraThreadSchedulingFunction()
@@ -170,7 +169,6 @@ public abstract class AbstractExecutor implements Runnable {
   }
 
   private void sortTasks() {
-    long startTime = System.currentTimeMillis();
     executorTasks.sort(state.comparator);
   }
 
@@ -180,7 +178,6 @@ public abstract class AbstractExecutor implements Runnable {
     for (Task task : executorTasks) {
       task.refreshFeatures();
     }
-    int totalDependentCount = 0;
     for (int taskIndex : runTasks) {
       Task task = executorTasks.get(taskIndex);
       task.updateFeatures(
@@ -190,7 +187,6 @@ public abstract class AbstractExecutor implements Runnable {
       for (TaskDependency taskDependency : taskDependencies) {
         for (Task dependent : taskDependency.dependents(task)) {
           state.markUpdated(dependent);
-          totalDependentCount++;
         }
       }
     }
