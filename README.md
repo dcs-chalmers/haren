@@ -14,6 +14,24 @@ For detailed information, please refer to the ACM DEBS'19 publication introducin
 
 ## Usage
 
+
+### Project Setup
+
+Include the following in your `pom.xml`:
+
+```xml
+<dependencies>
+    <dependency>
+      <groupId>io.palyvos</groupId>
+      <artifactId>haren</artifactId>
+      <version>0.1</version>
+    </dependency>
+    <!-- ... -->
+</dependencies>
+```
+
+### Main Classes
+
 Haren can be coupled with an SPE using the `Task` and `HarenScheduler` entities, where a Task is a
 unit of execution (e.g., an operator) that will be scheduled by `HarenScheduler`.
 The scheduling behavior is controlled by defining an appropriate 
