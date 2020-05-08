@@ -7,7 +7,7 @@
   <artifactId>haren</artifactId>
   <version>0.1</version>
 
-  <name>io.palyvos:haren</name>
+  <name>${project.groupId}:${project.artifactId}</name>
   <description>A scheduling framework for Stream Processing Systems.</description>
   <url>https://github.com/dcs-chalmers/haren</url>
 
@@ -23,7 +23,7 @@
       <name>Dimitris Palyvos-Giannas</name>
       <email>palyvos@chalmers.se</email>
       <organization>Chalmers University of Technology</organization>
-      <organizationUrl>palyvos.io</organizationUrl>
+      <organizationUrl>chalmers.se</organizationUrl>
     </developer>
   </developers>
 
@@ -33,6 +33,12 @@
     <url>https://github.com/dcs-chalmers/haren/tree/master/</url>
   </scm>
 
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -89,6 +95,43 @@
             <arg>--pinentry-mode</arg>
             <arg>loopback</arg>
           </gpgArguments>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
       </plugin>
     </plugins>
