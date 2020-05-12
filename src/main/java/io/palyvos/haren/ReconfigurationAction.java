@@ -47,13 +47,13 @@ class ReconfigurationAction implements Runnable {
   private final List<AbstractExecutor> executors;
   private final SchedulerState state;
   private boolean firstUpdate = true;
-  private List<Task> tasksToAdd = new ArrayList<>();
-  private List<Task> tasksToRemove = new ArrayList<>();
+  private final List<Task> tasksToAdd = new ArrayList<>();
+  private final List<Task> tasksToRemove = new ArrayList<>();
   private final Set<Integer> taskIndexes = new HashSet<>();
 
   public ReconfigurationAction(
       List<Task> inputTasks, List<AbstractExecutor> executors, SchedulerState state) {
-    this.tasks = new ArrayList(inputTasks);
+    this.tasks = new ArrayList<>(inputTasks);
     Collections.sort(tasks, Comparator.comparingInt(Task::getIndex));
     this.taskIndexes.addAll(HarenScheduler.taskIndexes(tasks));
     this.executors = executors;
@@ -79,7 +79,6 @@ class ReconfigurationAction implements Runnable {
   }
 
   private void updateFeaturesWithDependencies() {
-    long startTime = System.currentTimeMillis();
     for (Task task : tasks) {
       if (state.resetUpdated(task)) {
         task.updateFeatures(
@@ -90,7 +89,6 @@ class ReconfigurationAction implements Runnable {
   }
 
   private void updateAllFeatures() {
-    long startTime = System.currentTimeMillis();
     for (Task task : tasks) {
       task.refreshFeatures();
       task.updateFeatures(
@@ -105,7 +103,6 @@ class ReconfigurationAction implements Runnable {
   }
 
   private List<List<Task>> deployTasks() {
-    long startTime = System.currentTimeMillis();
     List<List<Task>> assignments =
         state.interThreadSchedulingFunction().getAssignment(executors.size());
     return assignments;
