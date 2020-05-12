@@ -106,7 +106,6 @@ public abstract class AbstractExecutor implements Runnable {
    * Update the start time of the new round, but count the sort time in the round time, to achieve
    * synchronized entry to the barrier between processing threads.
    *
-   * @return The start time of the rounds.
    */
   private void beginRound() {
     calculatePriorities();
@@ -209,7 +208,7 @@ public abstract class AbstractExecutor implements Runnable {
 
   protected abstract void onRoundStart();
 
-  private final void printTasks() {
+  private void printTasks() {
     synchronized (AbstractExecutor.class) {
       LOG.info("-----Thread assignment-----");
       for (Task task : executorTasks) {
