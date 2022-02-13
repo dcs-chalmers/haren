@@ -1,5 +1,7 @@
 # Haren
 
+![Haren outline](media/haren_middleware_demo.png)
+
 Haren is a **scheduling framework for stream processing systems**. It executes streaming operators 
 using a group of Processing Threads (PTs) and allows the developer to easily implement and enforce
 scheduling policies. It abstracts the state of streaming components as abritrary *features*, that are
